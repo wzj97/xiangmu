@@ -1,5 +1,4 @@
-aaaaaaaaaaaaaaaaaaaaaaaaaa这是模拟团队其他人的修改
-#### 数据库基本操作
+####数据库基本操作
 
 ```sql
 -- 表示单行注释   
@@ -27,12 +26,12 @@ delete table users; -- 删除内存，不删除定义，不释放空间，一行
    insert into users (uname,age,gender) values ('张三', 26, '男');
    --自增的主键，一般可以不写
    insert into users (id,uname,age,gender) values (null,'张三', 26, '男');
-   
+
    insert into users (uname,age,gender) select name, age, gender from account; -- 从一个表中查到数据后 在对应的添加进去
-   
+
    -- 2. 删除
    delete from users where id = '2';
-   
+
    -- 3. 改
    update users set age=99 where id = 1; -- 后面非数字要跟引号
    ```
@@ -42,24 +41,24 @@ delete table users; -- 删除内存，不删除定义，不释放空间，一行
    ```sql
    -- 4. 查
    -- 这个才是影响我们程序性能的关键， 一般的淘宝，等电商网站，买火车票网站，各种复杂的查询都是 数据库db 程序员做的事情， 不断的优化查询算法，让时间缩短，提高用户体验，更快的将结果返回给后端
-   
+
    ---1. 查询部分行列， 生产环境一定不要用*
    select uname, age from users;
    select uname, age from users where id = 5;
-   
+
    ---2. like模糊查询
    // 表示查询uname字段 第一个子为张的记录
    select uname,age,gender from users where uname like '张%';
-   
+
    ---3. between， in 范围查询
    select uname from users where age between 10 and 30;
    select uname, age from users where age in (11,99);
-   
+
    ---4. 分组查询
    -- 注意分组查询里面不能使用where语句， 要是有条件的话 需要用having
    select uname as '姓名' from users group by id;
    select uname as '姓名' from users group by id having count(age)>0;
-   
+
    ---5. 多表级联查询
    select a.uname,b.account from a,b where a.id = b.id;
    ```
